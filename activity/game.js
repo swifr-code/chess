@@ -123,3 +123,33 @@ async function init() {
 }
 
 init();
+
+const socket = new WebSocket("wss://your-project.up.railway.app");
+
+// when connected
+socket.onopen = () => {
+    console.log("Connected to backend");
+};
+
+// receive updates
+socket.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+
+    if (data.type === "state") {
+        renderBoard(data.board);
+    }
+
+    if (data.type === "move") {
+        makeMoveOnBoard(data.from, data.to);
+    }
+};
+
+// send moves
+function sendMove(from, to) {
+    socket.send(JSON.stringify({
+        type: "move",
+        from,
+        to
+    }));
+}
+
