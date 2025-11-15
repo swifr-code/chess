@@ -3,7 +3,7 @@ let discord;
 let userId;
 
 // --- Backend server URL ---
-const BACKEND_URL = "wss://YOUR-Railway-WS-URL.up.railway.app"; 
+const BACKEND_URL = "chess-production-64f2.up.railway.app"; 
 
 // WebSocket instance
 let socket;
